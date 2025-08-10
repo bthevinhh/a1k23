@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Có 45 mạng</title>
+  <style>
+    /* Nền toàn trang - bạn thay hình hoặc màu ở đây */
+   body, html {
+  margin: 0; padding: 0; height: 100%;
+  overflow: hidden;
+  background: url('https://cdn-media.sforum.vn/storage/app/media/giakhanh/h%C3%ACnh%20n%E1%BB%81n%20powerpoint%20%C4%91%E1%BB%99ng/hinh-nen-powerpoint-dong-1.gif') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  color: white;
+  position: relative;
+}
+
+    /* Nền phần tra cứu - bạn thay hình hoặc màu ở đây */
+    .container {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      /* ==== Thay nền phần tra cứu ở đây ==== */
+      background: rgba(0, 0, 0, 0.6); /* ví dụ nền mờ đen */
+      /* Nếu bạn muốn hình nền riêng cho container thì dùng như sau: */
+      /* background: url('your-container-bg.png') no-repeat center center; */
+      /* background-size: cover; */
+
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #006600;
+      text-align: center;
+      z-index: 10;
+    }
+
+    input[type=number] {
+      width: 100px;
+      font-size: 18px;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 15px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 8px 20px;
+      border-radius: 6px;
+      border: none;
+      background: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #27ae60;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* Lá tre rơi */
+    .leaf {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('leaf.png'); /* Bạn đổi hình lá tre ở đây */
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Chọn số từ 1 đến 45</h1>
+    <input type="number" id="numberInput" min="1" max="45" placeholder="Nhập số..." />
+    <button onclick="goToPage()">Zô luôn</button>
+  </div>
+
+  <script>
+    function goToPage() {
+      const num = parseInt(document.getElementById('numberInput').value);
+      if (num >= 1 && num <= 45) {
+        window.location.href = `page${num}.html`;
+      } else {
+        alert('Vui lòng nhập số từ 1 đến 45');
+      }
+    }
+
+    // Tạo hiệu ứng lá tre rơi
+    const leafCount = 20;
+    for(let i = 0; i < leafCount; i++) {
+      let leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.animationDuration = (5 + Math.random() * 10) + 's';
+      leaf.style.animationDelay = (Math.random() * 15) + 's';
+      leaf.style.width = (20 + Math.random() * 20) + 'px';
+      leaf.style.height = leaf.style.width;
+      leaf.style.opacity = (0.5 + Math.random() * 0.5);
+      leaf.style.filter = `hue-rotate(${Math.random()*30}deg)`;
+      document.body.appendChild(leaf);
+    }
+  </script>
+</body>
+</html>
